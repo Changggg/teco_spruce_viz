@@ -4,9 +4,9 @@ args = commandArgs(TRUE)
 # args[1] is the directory for observation files
 # args[2] is the directory for simulation files
 # args[2] is output directory of graphs
-args1 = "/ou-ecolab/teco_spruce_viz/obs_file/SPRUCE_obs.txt"
-args2 = "/ou-ecolab/teco_spruce_viz/sim_file/Simu_dailyflux.txt"
-args3 = "/ou-ecolab/teco_spruce_viz/graphoutput"
+args1 = "obs_file/SPRUCE_obs.txt"
+args2 = "graphoutput/Simu_dailyflux.txt"
+args3 = "graphoutput"
 
 tmp <- read.table(args1,header=TRUE,sep="")
 daily = tmp[,1]
