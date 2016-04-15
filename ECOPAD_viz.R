@@ -58,12 +58,6 @@ axis(side=2)
 points(daily,dailygpp,col='red',pch=19)
 dev.off()
 
-png(height=1200, width=1400,pointsize=40, file="nee.png")
-plot(days,nee,type='l',axes=FALSE,xlab="Years",ylab="NEE")
-axis(side=1,at=ticks,labels=xticklab)
-axis(side=2)
-points(daily,dailynee,col='red',pch=19)
-dev.off()
 
 png(height=1200, width=1400,pointsize=40, file="er.png")
 plot(days,er,type='l',axes=FALSE,xlab="Years",ylab="ER")
