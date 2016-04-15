@@ -6,7 +6,7 @@ library(ggplot2)
 # args[2] is the directory for simulation files
 # args[2] is output directory of graphs
 args1 = "obs_file/SPRUCE_obs.txt"
-args2 = "graphoutput/Simu_dailyflux.txt"
+args2 = "output/"
 args3 = "graphoutput"
 
 
