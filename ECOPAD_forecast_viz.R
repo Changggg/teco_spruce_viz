@@ -5,9 +5,12 @@ library(ggplot2)
 # args[1] is the directory for observation files
 # args[2] is the directory for simulation files
 # args[2] is output directory of graphs
-args1 = "obs_file/SPRUCE_obs.txt"
-args2 = "output/"
-args3 = "graphoutput"
+#args1 = "obs_file/SPRUCE_obs.txt"
+#args2 = "graphoutput/Simu_dailyflux.txt"
+#args3 = "graphoutput"
+args1 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/input/SPRUCE_obs.txt"
+args2 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/"
+args3 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
 
 
 tmp <- read.table(args1,header=TRUE,sep="")
@@ -36,8 +39,12 @@ dailypheno = tmp[,22]
 dailypheno[dailypheno==-9999]=NA
 
 setwd(args2)
+k=1
+filename = paste("Simu_dailyflux",sprintf("%03d",k),".txt",sep='')
+tmp <- read.table(filename,sep=",")
+tspan = nrow(tmp)
+years = floor(tspan/365)+1
 ind = 100
-tspan = 1460
 days.mat = matrix(nrow=tspan,ncol=ind)
 gpp.mat = matrix(nrow=tspan,ncol=ind)
 nee.mat = matrix(nrow=tspan,ncol=ind)
@@ -80,9 +87,11 @@ plot(days,gpp.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="GPP",ylim=c(0,14))
 for(i in 2:ind){
   lines(days,gpp.mat[,i])
 }
-ticks=c(0,365,365*2,365*3,365*4)
-xticklab=c("2011","2012","2013","2014","2015")
-axis(side=1,at=ticks,labels=xticklab)
+ticks=c(0,365,365*2+1,365*3+1,365*4+1,365*5+1,365*6+2,365*7+2,365*8+2,
+        365*9+2,365*10+3,365*11+3,365*12+3,365*13+3,365*14+3)
+xticklab=c("2011","2012","2013","2014","2015","2016","2017",
+           "2018","2019","2020","2021","2022","2023","2024","2025")
+axis(side=1,at=ticks[1:years],labels=xticklab[1:years])
 axis(side=2)
 points(daily,dailygpp,col='red',pch=19)
 dev.off()
@@ -92,7 +101,7 @@ plot(days,er.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="ER",ylim=c(0,10))
 for(i in 2:ind){
   lines(days,er.mat[,i])
 }
-axis(side=1,at=ticks,labels=xticklab)
+axis(side=1,at=ticks[1:years],labels=xticklab[1:years])
 axis(side=2)
 points(daily,dailyer,col='red',pch=19)
 dev.off()
@@ -109,7 +118,7 @@ ggplot(data.foliage,aes(x=days,y=foliage)) +
   geom_point(data=points.foliage,col="red",size=10)+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   labs(x="Years",y="Foliage") +
-  scale_x_continuous(breaks=c(0,365,365*2,365*3,365*4),labels=c("2011","2012","2013","2014","2015"))+
+  scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
 
@@ -125,7 +134,7 @@ ggplot(data.wood,aes(x=days,y=wood)) +
   geom_point(data=points.wood,col="red",size=10)+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   labs(x="Years",y="Wood") +
-  scale_x_continuous(breaks=c(0,365,365*2,365*3,365*4),labels=c("2011","2012","2013","2014","2015"))+
+  scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
 
@@ -141,7 +150,7 @@ ggplot(data.root,aes(x=days,y=root)) +
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   geom_point(data=points.root,col="red",size=10)+
   labs(x="Years",y="Root") +
-  scale_x_continuous(breaks=c(0,365,365*2,365*3,365*4),labels=c("2011","2012","2013","2014","2015"))+
+  scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
 
@@ -157,7 +166,7 @@ ggplot(data.soil,aes(x=days,y=soil)) +
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   geom_point(data=points.soil,col="red",size=10)+
   labs(x="Years",y="Soil C") +
-  scale_x_continuous(breaks=c(0,365,365*2,365*3,365*4),labels=c("2011","2012","2013","2014","2015"))+
+  scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
 
