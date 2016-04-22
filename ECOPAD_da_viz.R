@@ -9,7 +9,11 @@ args1 = "obs_file/SPRUCE_obs.txt"
 args2 = "graphoutput/Simu_dailyflux.txt"
 args3 = "graphoutput"
 
-tmp <- read.table(args2,sep=",")
+args2 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/Paraest.txt"
+args3 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
+
+
+tmp <- read.table(args2,skip=2,sep=",")
 len1 = 10000
 len2 = nrow(tmp)
 tmp <- tmp[len1:len2,c(-20)]
