@@ -5,12 +5,14 @@ library(ggplot2)
 # args[1] is the directory for observation files
 # args[2] is the directory for simulation files
 # args[2] is output directory of graphs
-args1 = "obs_file/SPRUCE_obs.txt"
+#args1 = "obs_file/SPRUCE_obs.txt"
 args2 = "graphoutput/Simu_dailyflux.txt"
 args3 = "graphoutput"
 
-args2 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/Paraest.txt"
-args3 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
+args2 = args[1] 
+#"E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/Paraest.txt"
+args3 = args[2] 
+#"E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
 
 
 tmp <- read.table(args2,skip=2,sep=",")
