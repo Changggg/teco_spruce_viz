@@ -4,13 +4,17 @@ args = commandArgs(TRUE)
 library(ggplot2)
 # args[1] is the directory for observation files
 # args[2] is the directory for simulation files
-# args[2] is output directory of graphs
+# args[3] is output directory of graphs
+# args[4] is the number of iterations
 #args1 = "obs_file/SPRUCE_obs.txt"
 #args2 = "graphoutput/Simu_dailyflux.txt"
 #args3 = "graphoutput"
-args1 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/input/SPRUCE_obs.txt"
-args2 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/"
-args3 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
+args1 = args[1]
+#"E:/OU/MCMC/ECOPAD_TECO_SPRUCE/input/SPRUCE_obs.txt"
+args2 = args[2] 
+#"E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/"
+args3 = args[3] 
+# "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
 
 
 tmp <- read.table(args1,header=TRUE,sep="")
@@ -44,7 +48,7 @@ filename = paste("Simu_dailyflux",sprintf("%03d",k),".txt",sep='')
 tmp <- read.table(filename,sep=",")
 tspan = nrow(tmp)
 years = floor(tspan/365)+1
-ind = 100
+ind = as.integer(args[4])
 days.mat = matrix(nrow=tspan,ncol=ind)
 gpp.mat = matrix(nrow=tspan,ncol=ind)
 nee.mat = matrix(nrow=tspan,ncol=ind)

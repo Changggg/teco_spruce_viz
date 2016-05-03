@@ -5,7 +5,7 @@ args = commandArgs(TRUE)
 # args[2] is the directory for simulation files
 # args[2] is output directory of graphs
 args1 = "obs_file/SPRUCE_obs.txt"
-args2 = "graphoutput/Simu_dailyflux.txt"
+args2 = "graphoutput/Simu_dailyflux001.txt"
 args3 = "graphoutput"
 
 tmp <- read.table(args1,header=TRUE,sep="")
