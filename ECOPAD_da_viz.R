@@ -9,7 +9,6 @@ library(ggplot2)
 args2 = "graphoutput/Simu_dailyflux.txt"
 args3 = "graphoutput"
 
-<<<<<<< HEAD
 args2 = args[1]
 #args2 = "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/Paraest.txt"
 args3 = args[2]
@@ -23,14 +22,6 @@ par.string = c('lat','longi','wsmax','wsmin','LAImax','LAImin','rdepth',
                'GDDonset','Q10','RL0','RS0','Rr0')
 npara = scan(args2,nlines=1)
 da.varname = scan(args2,skip=1,nlines=1,sep="")
-=======
-args2 = args[1] 
-#"E:/OU/MCMC/ECOPAD_TECO_SPRUCE/output/Paraest.txt"
-args3 = args[2] 
-#"E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
-
-
->>>>>>> 0e9e2de51b715fda760cb482a7165fa26f1cd7a6
 tmp <- read.table(args2,skip=2,sep=",")
 len2 = nrow(tmp)
 len1 = floor(len2/2)
