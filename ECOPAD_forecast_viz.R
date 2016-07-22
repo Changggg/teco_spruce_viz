@@ -16,6 +16,9 @@ args2 = args[2]
 args3 = args[3] 
 # "E:/OU/MCMC/ECOPAD_TECO_SPRUCE/graphoutput"
 
+currentdate = Sys.Date()
+firstday = as.numeric(currentdate - as.Date('2011-01-01'))
+lastday = firstday+7
 
 tmp <- read.table(args1,header=TRUE,sep="")
 daily = tmp[,1]
@@ -86,6 +89,28 @@ for(k in 1:ind){
 }
 
 setwd(args3)
+png(height=1200, width=1400,pointsize=40, file="gpp_forecast_weekly.png")
+plot(days[firstday:lastday],gpp.mat[firstday:lastday,1],type='l',axes=FALSE,xlab="Years",ylab="GPP")
+for(i in 2:ind){
+  lines(days[firstday:lastday],gpp.mat[firstday:lastday,i])
+}
+ticks=c(0,1,2,3,4,5,6,7)
+xticklab=c(currentdate,currentdate+1,currentdate+2,currentdate+3,currentdate+4,
+           currentdate+5,currentdate+6,currentdate+7)
+axis(side=1,at=ticks,labels=xticklab)
+axis(side=2)
+dev.off()
+
+png(height=1200, width=1400,pointsize=40, file="er_forecast_weekly.png")
+plot(days[firstday:lastday],er.mat[firstday:lastday,1],type='l',axes=FALSE,xlab="Years",ylab="ER")
+for(i in 2:ind){
+  lines(days[firstday:lastday],er.mat[firstday:lastday,i])
+}
+axis(side=1,at=ticks,labels=xticklab)
+axis(side=2)
+dev.off()
+
+
 png(height=1200, width=1400,pointsize=40, file="gpp_forecast.png")
 plot(days,gpp.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="GPP",ylim=c(0,14))
 for(i in 2:ind){
