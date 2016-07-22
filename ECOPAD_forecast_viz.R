@@ -100,8 +100,8 @@ highb = mean1+std1
 data.gpp.weekly<-data.frame(days=days[firstday:lastday],gpp=mean1)
 ggplot(data.gpp.weekly,aes(x=days,y=gpp)) + 
   theme_bw() +
-  geom_smooth(aex(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
-  labs(x='Date',y="GPP") + 
+  geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
+  labs(x='Date',y="GPP (g m-2 day-1)") + 
   scale_x_continuous(breaks=ticks,labels=xticklab)+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
@@ -114,17 +114,14 @@ highb = mean1+std1
 data.er.weekly<-data.frame(days=days[firstday:lastday],er=mean1)
 ggplot(data.er.weekly,aes(x=days,y=er)) + 
   theme_bw() +
-  geom_smooth(aex(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
-  labs(x='Date',y="ER") + 
+  geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
+  labs(x='Date',y="ER (g m-2 day-1)") + 
   scale_x_continuous(breaks=ticks,labels=xticklab)+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
 
-
-
-
 png(height=1200, width=1400,pointsize=40, file="gpp_forecast.png")
-plot(days,gpp.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="GPP",ylim=c(0,14))
+plot(days,gpp.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="GPP (g m-2 day-1)",ylim=c(0,14))
 for(i in 2:ind){
   lines(days,gpp.mat[,i])
 }
@@ -138,7 +135,7 @@ points(daily,dailygpp,col='red',pch=19)
 dev.off()
 
 png(height=1200, width=1400,pointsize=40, file="er_forecast.png")
-plot(days,er.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="ER",ylim=c(0,10))
+plot(days,er.mat[,1],type='l',axes=FALSE,xlab="Years",ylab="ER (g m-2 day-1)",ylim=c(0,10))
 for(i in 2:ind){
   lines(days,er.mat[,i])
 }
@@ -158,7 +155,7 @@ ggplot(data.foliage,aes(x=days,y=foliage)) +
   theme_bw()+
   geom_point(data=points.foliage,col="red",size=10)+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
-  labs(x="Years",y="Foliage") +
+  labs(x="Years",y="Foliage (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
@@ -174,7 +171,7 @@ ggplot(data.wood,aes(x=days,y=wood)) +
   theme_bw()+
   geom_point(data=points.wood,col="red",size=10)+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
-  labs(x="Years",y="Wood") +
+  labs(x="Years",y="Wood (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
@@ -190,7 +187,7 @@ ggplot(data.root,aes(x=days,y=root)) +
   theme_bw()+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   geom_point(data=points.root,col="red",size=10)+
-  labs(x="Years",y="Root") +
+  labs(x="Years",y="Root (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
@@ -206,7 +203,7 @@ ggplot(data.soil,aes(x=days,y=soil)) +
   theme_bw()+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   geom_point(data=points.soil,col="red",size=10)+
-  labs(x="Years",y="Soil C") +
+  labs(x="Years",y="Soil C (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
