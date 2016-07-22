@@ -100,7 +100,7 @@ highb = mean1+std1
 data.gpp.weekly<-data.frame(days=days[firstday:lastday],gpp=mean1)
 ggplot(data.gpp.weekly,aes(x=days,y=gpp)) + 
   theme_bw() +
-  geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
+  geom_smooth(aes(ymin=lowb,ymax=highb),size=3,fill='#008B00')+
   labs(x='Date',y="GPP (g m-2 day-1)") + 
   scale_x_continuous(breaks=ticks,labels=xticklab)+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
@@ -114,7 +114,7 @@ highb = mean1+std1
 data.er.weekly<-data.frame(days=days[firstday:lastday],er=mean1)
 ggplot(data.er.weekly,aes(x=days,y=er)) + 
   theme_bw() +
-  geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
+  geom_smooth(aes(ymin=lowb,ymax=highb),size=3,fill='#008B00')+
   labs(x='Date',y="ER (g m-2 day-1)") + 
   scale_x_continuous(breaks=ticks,labels=xticklab)+
   theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
