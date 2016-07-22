@@ -90,25 +90,37 @@ for(k in 1:ind){
 
 setwd(args3)
 png(height=1200, width=1400,pointsize=40, file="gpp_forecast_weekly.png")
-plot(days[firstday:lastday],gpp.mat[firstday:lastday,1],type='l',axes=FALSE,xlab="Years",ylab="GPP")
-for(i in 2:ind){
-  lines(days[firstday:lastday],gpp.mat[firstday:lastday,i])
-}
-ticks=c(0,1,2,3,4,5,6,7)
+ticks=c(firstday,firstday+1,firstday+2,firstday+3,firstday+4,firstday+5,firstday+6,firstday+7)
 xticklab=c(currentdate,currentdate+1,currentdate+2,currentdate+3,currentdate+4,
            currentdate+5,currentdate+6,currentdate+7)
-axis(side=1,at=ticks,labels=xticklab)
-axis(side=2)
+mean1 = rowMeans(gpp.mat[firstday:lastday,])
+std1 = apply(gpp.mat[firstday:lastday,],1,sd)
+lowb = mean1-std1
+highb = mean1+std1
+data.gpp.weekly<-data.frame(days=days[firstday:lastday],gpp=mean1)
+ggplot(data.gpp.weekly,aes(x=days,y=gpp)) + 
+  theme_bw() +
+  geom_smooth(aex(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
+  labs(x='Date',y="GPP") + 
+  scale_x_continuous(breaks=ticks,labels=xticklab)+
+  theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
 
 png(height=1200, width=1400,pointsize=40, file="er_forecast_weekly.png")
-plot(days[firstday:lastday],er.mat[firstday:lastday,1],type='l',axes=FALSE,xlab="Years",ylab="ER")
-for(i in 2:ind){
-  lines(days[firstday:lastday],er.mat[firstday:lastday,i])
-}
-axis(side=1,at=ticks,labels=xticklab)
-axis(side=2)
+mean1 = rowMeans(er.mat[firstday:lastday,])
+std1 = apply(er.mat[firstday:lastday,],1,sd)
+lowb = mean1-std1
+highb = mean1+std1
+data.er.weekly<-data.frame(days=days[firstday:lastday],er=mean1)
+ggplot(data.er.weekly,aes(x=days,y=er)) + 
+  theme_bw() +
+  geom_smooth(aex(ymin=lowb,ymax=highb),stat='identity',size=3,fill='#008B00')+
+  labs(x='Date',y="ER") + 
+  scale_x_continuous(breaks=ticks,labels=xticklab)+
+  theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
 dev.off()
+
+
 
 
 png(height=1200, width=1400,pointsize=40, file="gpp_forecast.png")
