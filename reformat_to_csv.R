@@ -95,7 +95,9 @@ data.gpp.weekly<-data.frame(date=days,gpp=gpp_mean,gpp_sd=gpp_std,nee=nee_mean,
           wood=wood_mean,wood_sd=wood_std,root=root_mean,root_sd=root_std,soil=soil_mean,
           soil_sd=soil_std)
 
-outcsv_name=paste(currentdate,"-temp-",args4,"-co2-",args5,".csv",sep='')
+outcsv_name=paste(currentdate,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),".csv",sep='')
 print(outcsv_name)
-write.table(data.gpp.weekly, file = "ccc", sep = "," col.names = T,
-            row.names = F, qmethod = "double")
+
+write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = T,
+row.names = F, qmethod = "double")
+
