@@ -3,12 +3,15 @@ args = commandArgs(TRUE)
 # args[1] is the directory for simulation files
 # args[2] is output directory of csv file
 # args[3] is the number of iterations
+# args[4] is temperature treatment 
+# args[5] is co2_treatment 
 
 #args1 = "graphoutput/Simu_dailyflux.txt"
 #args2 = "graphoutput"
 args1 = args[1] 
 args2 = args[2] 
-
+args4 = args[4]
+args5 = args[5]
 
 currentdate = Sys.Date()
 firstday = as.numeric(currentdate - as.Date('2011-01-01'))
@@ -92,7 +95,7 @@ data.gpp.weekly<-data.frame(date=days,gpp=gpp_mean,gpp_sd=gpp_std,nee=nee_mean,
           wood=wood_mean,wood_sd=wood_std,root=root_mean,root_sd=root_std,soil=soil_mean,
           soil_sd=soil_std)
 
-outcsv_name=paste(currentdate,"-ecolab-forecast.csv",sep='')
+outcsv_name=paste(currentdate,"-temp-",args4,"-co2-",args5,".csv",sep='')
 print(outcsv_name)
-write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = T,
+write.table(data.gpp.weekly, file = "ccc", sep = "," col.names = T,
             row.names = F, qmethod = "double")
