@@ -91,12 +91,15 @@ days<-seq(currentdate,currentdate+7, "days")
 
 
 data.gpp.weekly<-data.frame(date=days,gpp=gpp_mean,gpp_sd=gpp_std,nee=nee_mean, 
-          nee_sd=nee_std,er=er_mean,er_sd=er_std,foliage=foliage_mean,foliage=foliage_std,
+          nee_sd=nee_std,er=er_mean,er_sd=er_std,foliage=foliage_mean,foliage_sd=foliage_std,
           wood=wood_mean,wood_sd=wood_std,root=root_mean,root_sd=root_std,soil=soil_mean,
           soil_sd=soil_std)
 
 currenthour=format(Sys.time(), "%H")
-outcsv_name=paste(currentdate,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),"-H",currenthour,".csv",sep='')
+currentyear=format(Sys.time(), "%Y")
+#outhour=3
+
+outcsv_name=paste(currentyear,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),"-H",currenthour,".csv",sep='')
 print(outcsv_name)
 
 write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = T,
