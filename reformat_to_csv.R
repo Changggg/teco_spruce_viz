@@ -15,7 +15,7 @@ args5 = args[5]
 
 currentdate = Sys.Date()
 firstday = as.numeric(currentdate - as.Date('2011-01-01'))
-lastday = firstday+7
+lastday = firstday+6
 
 
 setwd(args1)
@@ -86,7 +86,7 @@ root_std = apply(root.mat[firstday:lastday,],1,sd)
 soil_mean = rowMeans(soil.mat[firstday:lastday,])
 soil_std = apply(soil.mat[firstday:lastday,],1,sd)
 
-days<-seq(currentdate,currentdate+7, "days")
+days<-seq(currentdate,currentdate+6, "days")
 
 
 
@@ -99,7 +99,7 @@ currenthour=format(Sys.time(), "%H")
 currentyear=format(Sys.time(), "%Y")
 #outhour=3
 
-outcsv_name=paste(currentyear,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),"-H",currenthour,".csv",sep='')
+outcsv_name=paste(currentyear,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),".csv",sep='')
 print(outcsv_name)
 
 write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = T,
