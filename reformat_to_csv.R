@@ -99,9 +99,14 @@ currenthour=format(Sys.time(), "%H")
 currentyear=format(Sys.time(), "%Y")
 #outhour=3
 
+col_header<-c('date','gpp (g m-2 day-1)','gpp_sd','nee (g m-2 day-1)','nee_sd',
+              'er (g m-2 day-1)','er_sd','foliage_C (g m-2)','foliage_C_sd',
+              'wood_C (g m-2)','wood_C_sd','root_C (g m-2)','root_C_sd',
+              'soil_C (g m-2)','soil_C_sd')
+
 outcsv_name=paste(currentyear,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),".csv",sep='')
 print(outcsv_name)
 
-write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = T,
+write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = col_header,
 row.names = F, qmethod = "double")
 
