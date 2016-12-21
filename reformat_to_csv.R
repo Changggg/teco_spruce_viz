@@ -104,9 +104,12 @@ col_header<-c('date','gpp (g m-2 day-1)','gpp_sd','nee (g m-2 day-1)','nee_sd',
               'wood_C (g m-2)','wood_C_sd','root_C (g m-2)','root_C_sd',
               'soil_C (g m-2)','soil_C_sd')
 
+outtxt_name=paste(currentyear,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),".txt",sep='')
 outcsv_name=paste(currentyear,"-temp-",sprintf("%s",args4),"-co2-",sprintf("%s",args5),".csv",sep='')
 print(outcsv_name)
 
-write.table(data.gpp.weekly, file = outcsv_name, sep = ",", col.names = col_header,
+write.table(data.gpp.weekly, file = outtxt_name, sep = ",", col.names = col_header,
 row.names = F, qmethod = "double")
+
+file.rename(outtxt_name,outcsv_name)  # in order to add double quote
 
