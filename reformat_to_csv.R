@@ -14,7 +14,7 @@ args4 = args[4]
 args5 = args[5]
 
 currentdate = Sys.Date()
-firstday = as.numeric(currentdate - as.Date('2011-01-01'))
+firstday = as.numeric(currentdate - as.Date('2011-01-01')) 
 lastday = firstday+6
 
 #firstday = as.numeric(as.Date('2016-10-10') - as.Date('2011-01-01'))
@@ -133,7 +133,7 @@ print(outcsv_name)
 #row.names = F, qmethod = "double")
 
 write.table(data.gpp.weekly, file = outtxt_name, sep = ",", col.names = col_header,
-   row.names = F, quote = FALSE)
+   row.names = F, quote = FALSE,eol="\r\n")
 
 file.rename(outtxt_name,outcsv_name)  # in order to add double quote
 

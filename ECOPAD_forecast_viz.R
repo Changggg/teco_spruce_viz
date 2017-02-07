@@ -155,9 +155,9 @@ ggplot(data.foliage,aes(x=days,y=foliage)) +
   theme_bw()+
   geom_point(data=points.foliage,col="red",size=10)+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
-  labs(x="Years",y="Foliage (g m-2)") +
+  labs(x="Years",y="Foliage C (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
-  theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
+  theme(axis.text = element_text(size=28),axis.title=element_text(size=rel(2.8)))
 dev.off()
 
 png(height=1200, width=1400,pointsize=40, file="wood_forecast.png")
@@ -171,9 +171,9 @@ ggplot(data.wood,aes(x=days,y=wood)) +
   theme_bw()+
   geom_point(data=points.wood,col="red",size=10)+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
-  labs(x="Years",y="Wood (g m-2)") +
+  labs(x="Years",y="Wood C (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
-  theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
+  theme(axis.text = element_text(size=28),axis.title=element_text(size=rel(2.8)))
 dev.off()
 
 png(height=1200, width=1400,pointsize=40, file="root_forecast.png")
@@ -187,9 +187,9 @@ ggplot(data.root,aes(x=days,y=root)) +
   theme_bw()+
   geom_smooth(aes(ymin=lowb,ymax=highb),stat='identity',size=3,fill="#008B00") +
   geom_point(data=points.root,col="red",size=10)+
-  labs(x="Years",y="Root (g m-2)") +
+  labs(x="Years",y="Root C (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
-  theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
+  theme(axis.text = element_text(size=28),axis.title=element_text(size=rel(2.8)))
 dev.off()
 
 png(height=1200, width=1400,pointsize=40, file="soil_forecast.png")
@@ -205,6 +205,5 @@ ggplot(data.soil,aes(x=days,y=soil)) +
   geom_point(data=points.soil,col="red",size=10)+
   labs(x="Years",y="Soil C (g m-2)") +
   scale_x_continuous(breaks=ticks[1:years],labels=xticklab[1:years])+
-  theme(axis.text = element_text(size=23),axis.title=element_text(size=rel(1.8)))
+  theme(axis.text = element_text(size=28),axis.title=element_text(size=rel(2.8)))
 dev.off()
-
